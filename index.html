@@ -1,0 +1,91 @@
+// Video Unit + Sidenotes POC
+
+
+<html>
+  <head>
+    <script src="//cdn.livefyre.com/Livefyre.js"></script>
+  </head>
+<body>
+<style>
+.video {
+  margin-left: 60px;
+}
+
+.player {
+		padding: 0 5%;
+		width: 90%;
+		margin-top: 40px;
+	}
+
+	.timeline {
+	  margin: auto;
+	  padding: 10px 5% 0;
+	  color: black;
+	  font-size: 13px;
+	}
+
+	.sn-wrapper {
+	width: 70%;	
+	}
+
+	.elapsed {
+	  display: inline-block;
+	  width: 20%;
+	  border-top: 1.5px solid #848484;
+	}
+
+	span.lf-thread-btn a.fycon-action-view {
+		color: #3dbfe8;
+		-webkit-opacity: .7;
+	}
+
+	#end {
+	  /*border: none;*/
+	  width: 7%;
+	}
+</style>
+<!-- video placeholder -->
+<div class="video"><iframe width="650" height="315" src="https://www.youtube.com/embed/W_-qRcHAhzk" frameborder="0" allowfullscreen></iframe></div>
+
+<!-- Timeline component -->
+      <div class="timeline">
+      	<div class="sn-wrapper">
+		    <div class="elapsed" id="beg">0s</div>
+		    <div class="elapsed">0:30</div>
+		    <div class="elapsed">1:00</div>
+		    <div class="elapsed">1:30</div>
+		    <div class="elapsed" id="end">End</div>
+	    </div>
+	  </div>
+
+<script>
+  // Sidenotes config
+	var networkConfig = {
+	  network: 'sahilp.fyre.co'
+	};
+
+	var convConfig = {
+	  network: 'sahilp.fyre.co',
+	  selectors:'div.elapsed',
+	  position: 'left',
+	  siteId: '381270',
+	  articleId: 'sidenotesvideo1',
+	  collectionMeta: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoic2lkZW5vdGVzIiwidGl0bGUiOiJzaWRlbm90ZXN2aWRlbzEiLCJhcnRpY2xlSWQiOiJzaWRlbm90ZXN2aWRlbzEiLCJ1cmwiOiJodHRwOi8vY29kZXBlbi5pby9pdHNhaGlsL3Blbi9xcWJ6TG8iLCJpc3MiOiJ1cm46bGl2ZWZ5cmU6c2FoaWxwLmZ5cmUuY286c2l0ZT0zODEyNzAifQ.C_AwIQvrxrVHRlIXjD-maF55byoFnOi8xwcsu04YXmw'
+	};
+
+	Livefyre.require(['sidenotes#1'], function(Sidenotes) {
+			 new Sidenotes(convConfig);
+		});
+  
+  // Identity Integration for User Login
+	Livefyre.require(["identity#1", "auth"],
+	    function (Identity, auth) {
+	        var identity = new Identity({
+	            app: "https://identity.livefyre.com/sahilp.fyre.co"
+	        });
+	        auth.delegate(identity);
+	    }
+	);
+</script>
+   </body>
+</html>
